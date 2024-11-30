@@ -69,3 +69,5 @@ Certificates for each domain will be stored in ```/ssl-certs/DOMAIN_NAME/```:
 -Ensure ports ```80``` and ```443``` are not blocked by firewall
 
 -Verify domain ownership and DNS settings
+
+Made with ♥️ by Austin
