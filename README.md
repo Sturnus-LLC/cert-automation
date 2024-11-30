@@ -1,8 +1,8 @@
-#Cert Automation Utility
-##Overview
+# Cert Automation Utility
+## Overview
 This Docker container automates the process of generating and renewing SSL certificates using Let's Encrypt's Certbot for multiple domains.
 
-##Features
+## Features
 -Generate SSL certificates for multiple domains
 
 -Automatically renew certificates
@@ -11,20 +11,20 @@ This Docker container automates the process of generating and renewing SSL certi
 
 -Scheduled renewal via cron
 
-##Prerequisites
+## Prerequisites
 -Docker installed
 
 -Ports 80 and 443 available (used by Certbot for domain validation)
 
 -Domains pointing to the server where this container will run
 
-##Usage
+## Usage
 -Build the Docker Image
 ```bash
 docker build -t ssl-cert-generator .
 ```
 
-##Run the Container
+## Run the Container
 ```bash
 docker run -d \
   -e DOMAINS="example.com,www.example.com,another-domain.com" \
@@ -34,7 +34,7 @@ docker run -d \
   ssl-cert-generator
 ```
 
-##Parameters
+## Parameters
 -```DOMAINS```: Comma-separated list of domains to generate certificates for
 
 -```-v /path/on/host/ssl-certs:/ssl-certs```: Volume mount to persist certificates
@@ -42,7 +42,7 @@ docker run -d \
 -```-p 80:80 -p 443:443```: Expose ports for Let's Encrypt domain validation
 
 
-##Certificate Storage
+## Certificate Storage
 Certificates for each domain will be stored in ```/ssl-certs/DOMAIN_NAME/```:
 
 -```cert.pem```: Domain certificate
@@ -51,19 +51,19 @@ Certificates for each domain will be stored in ```/ssl-certs/DOMAIN_NAME/```:
 
 -```fullchain.pem```: Full certificate chain
 
-##Renewal
+## Renewal
 -Automatic renewal attempts occur twice daily via cron
 
 -Certificates are renewed if they are close to expiration
 
-##Important Notes
+## Important Notes
 -Ensure domains point to the server running this container
 
 -First-time run requires internet access to validate domains
 
 -Let's Encrypt has rate limits, so be cautious with frequent regenerations
 
-##Troubleshooting
+## Troubleshooting
 -Check container logs for any certificate generation errors
 
 -Ensure ports ```80``` and ```443``` are not blocked by firewall
