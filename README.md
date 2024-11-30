@@ -36,9 +36,9 @@ docker run -d \
 
 ##Certificate Storage
 Certificates for each domain will be stored in ```/ssl-certs/DOMAIN_NAME/```:
-```cert.pem```: Domain certificate
-```privkey.pem```: Private key
-```fullchain.pem```: Full certificate chain
+-```cert.pem```: Domain certificate
+-```privkey.pem```: Private key
+-```fullchain.pem```: Full certificate chain
 
 ##Renewal
 -Automatic renewal attempts occur twice daily via cron
