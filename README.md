@@ -9,12 +9,12 @@ This Docker container automates the process of generating and renewing SSL certi
 
 -Store certificates in separate directories for each domain
 
--Scheduled renewal via cron
+-Scheduled renewal via ```cron```
 
 ## Prerequisites
 -Docker installed
 
--Ports 80 and 443 available (used by Certbot for domain validation)
+-Ports ```80``` and ```443``` available (used by Certbot for domain validation)
 
 -Domains pointing to the server where this container will run
 
@@ -52,7 +52,7 @@ Certificates for each domain will be stored in ```/ssl-certs/DOMAIN_NAME/```:
 -```fullchain.pem```: Full certificate chain
 
 ## Renewal
--Automatic renewal attempts occur twice daily via cron
+-Automatic renewal attempts occur twice daily via ```cron```
 
 -Certificates are renewed if they are close to expiration
 
