@@ -66,6 +66,6 @@ Certificates for each domain will be stored in ```/ssl-certs/DOMAIN_NAME/```:
 ##Troubleshooting
 -Check container logs for any certificate generation errors
 
--Ensure ports 80 and 443 are not blocked by firewall
+-Ensure ports ```80``` and ```443``` are not blocked by firewall
 
 -Verify domain ownership and DNS settings
