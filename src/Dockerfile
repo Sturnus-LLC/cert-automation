@@ -16,8 +16,8 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /opt/ssl-scripts
 
 # Copy the certificate generation and renewal scripts
-COPY generate_certs.sh /opt/ssl-scripts/generate_certs.sh
-COPY renew_certs.sh /opt/ssl-scripts/renew_certs.sh
+COPY /generate_certs.sh /opt/ssl-scripts/generate_certs.sh
+COPY /renew_certs.sh /opt/ssl-scripts/renew_certs.sh
 
 # Make scripts executable
 RUN chmod +x /opt/ssl-scripts/*.sh
