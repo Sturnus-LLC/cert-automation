@@ -64,7 +64,7 @@ jobs:
         # Configure git
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        
+
         # Create and push the new tag
         git tag $new_version
         git push origin $new_version
@@ -75,5 +75,5 @@ jobs:
         context: .
         push: true
         tags: |
-          asturnus/cert-automation:latest
           asturnus/cert-automation:${{ steps.version.outputs.new_version }}
+          asturnus/cert-automation:latest
