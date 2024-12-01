@@ -32,10 +32,35 @@ jobs:
         pwd
         ls -la
         ls -la scripts/
+
+    - name: Generate version number
+      id: version
+      run: |
+        # Get the latest tag (if any)
+        latest_tag=$(git tag | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)
         
+        if [ -z "$latest_tag" ]; then
+          # If no tags exist, start with v1.0.0
+          new_version="v1.0.0"
+        else
+          # Extract the patch version and increment it
+          major=$(echo $latest_tag | cut -d. -f1)
+          minor=$(echo $latest_tag | cut -d. -f2)
+          patch=$(echo $latest_tag | cut -d. -f3)
+          new_patch=$((patch + 1))
+          new_version="${major}.${minor}.${new_patch}"
+        fi
+        
+        echo "new_version=${new_version}" >> $GITHUB_OUTPUT
+        # Create and push the new tag
+        git tag $new_version
+        git push origin $new_version
+
     - name: Build Docker image
       uses: docker/build-push-action@v6
       with:
         context: .
         push: true
-        tags: asturnus/cert-automation:latest
+        tags: |
+          asturnus/cert-automation:latest
+          asturnus/cert-automation:${{ steps.version.outputs.new_version }}
