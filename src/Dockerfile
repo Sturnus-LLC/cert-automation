@@ -16,8 +16,8 @@ RUN apt-get update && apt-get install -y \
 RUN mkdir -p /opt/ssl-scripts
 
 # Copy the certificate generation and renewal scripts
-COPY src/generate_certs.sh /opt/ssl-scripts/generate_certs.sh
-COPY src/renew_certs.sh /opt/ssl-scripts/renew_certs.sh
+COPY src/sh/generate_certs.sh /opt/ssl-scripts/generate_certs.sh
+COPY src/sh/renew_certs.sh /opt/ssl-scripts/renew_certs.sh
 
 # Make scripts executable
 RUN chmod +x /opt/ssl-scripts/*.sh
@@ -29,7 +29,7 @@ RUN (crontab -l 2>/dev/null; echo "0 0,12 * * * /opt/ssl-scripts/renew_certs.sh"
 VOLUME ["/ssl-certs"]
 
 # Copy entrypoint script
-COPY src/entrypoint.sh /entrypoint.sh
+COPY src/sh/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # Set the entrypoint
