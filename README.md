@@ -21,7 +21,7 @@ This Docker container automates the process of generating and renewing SSL certi
 ## Usage
 -Build the Docker Image
 ```bash
-docker build -t ssl-cert-generator .
+docker build -t cert-automation .
 ```
 
 ## Run the Container
@@ -31,7 +31,7 @@ docker run -d \
   -v /volume/and/folders/ssl-certs:/ssl-certs \
   -p 80:80 \
   -p 443:443 \
-  ssl-cert-generator
+  cert-automation
 ```
 
 ## Parameters
