@@ -30,14 +30,21 @@ for domain in "${DOMAIN_ARRAY[@]}"; do
         --non-interactive \
         --agree-tos \
         --email admin@$domain \
-        -d "$domain" \
-        --cert-path "$domain_dir/cert.pem" \
-        --key-path "$domain_dir/privkey.pem" \
-        --fullchain-path "$domain_dir/fullchain.pem"
+        -d "$domain"
     
-    echo "Generated certificates for $domain"
+    # Copy certificates to the desired location
+    cp "/etc/letsencrypt/live/$domain/cert.pem" "$domain_dir/cert.pem"
+    cp "/etc/letsencrypt/live/$domain/privkey.pem" "$domain_dir/privkey.pem"
+    cp "/etc/letsencrypt/live/$domain/fullchain.pem" "$domain_dir/fullchain.pem"
+    
+    # Set proper permissions
+    chmod 644 "$domain_dir/cert.pem"
+    chmod 644 "$domain_dir/fullchain.pem"
+    chmod 600 "$domain_dir/privkey.pem"
+    
+    echo "Generated and copied certificates for $domain"
 done
 
 # List generated certificates
-echo "Generated certificates:"
+echo "Generated certificates in /ssl-certs:"
 find /ssl-certs -type f | grep -E '(cert.pem|privkey.pem|fullchain.pem)'
