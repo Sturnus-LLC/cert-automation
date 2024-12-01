@@ -29,7 +29,7 @@ RUN (crontab -l 2>/dev/null; echo "0 0,12 * * * /opt/ssl-scripts/renew_certs.sh"
 VOLUME ["/ssl-certs"]
 
 # Copy entrypoint script
-COPY entrypoint.sh /entrypoint.sh
+COPY src/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # Set the entrypoint
