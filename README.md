@@ -32,7 +32,7 @@ docker build -t cert-automation .
 ```bash
 docker run -d \
   -e DOMAINS="example.com,www.example.com,another-domain.com" \
-  -v /volume/and/folders/ssl-certs:/ssl-certs \
+  -v cert-automation:/ssl-certs \
   -p 80:80 \
   -p 443:443 \
   cert-automation
