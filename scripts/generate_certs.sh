@@ -9,6 +9,18 @@ if [ -z "$DOMAINS" ]; then
     exit 1
 fi
 
+# Set default ports if not provided
+HTTP_PORT=${HTTP_PORT:-80}
+HTTPS_PORT=${HTTPS_PORT:-443}
+
+# Check if we should use staging environment
+USE_STAGING=${USE_STAGING:-false}
+STAGING_FLAG=""
+if [ "$USE_STAGING" = "true" ]; then
+    STAGING_FLAG="--test-cert"
+    echo "Using Let's Encrypt staging environment"
+fi
+
 # Convert comma-separated domains to an array
 IFS=',' read -ra DOMAIN_ARRAY <<< "$DOMAINS"
 
@@ -30,7 +42,10 @@ for domain in "${DOMAIN_ARRAY[@]}"; do
         --non-interactive \
         --agree-tos \
         --email admin@$domain \
-        -d "$domain"
+        -d "$domain" \
+	--http-01-port $HTTP_PORT \
+        --https-port $HTTPS_PORT \
+        $STAGING_FLAG
     
     # Copy certificates to the desired location
     cp "/etc/letsencrypt/live/$domain/cert.pem" "$domain_dir/cert.pem"
