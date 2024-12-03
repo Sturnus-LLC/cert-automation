@@ -28,8 +28,6 @@ IFS=',' read -ra DOMAIN_ARRAY <<< "$DOMAINS"
 certbot renew \
     --standalone \
     --non-interactive \
-    --http-01-port $HTTP_PORT \
-    --https-port $HTTPS_PORT \
     $STAGING_FLAG
 
 # Copy renewed certificates to the custom directories

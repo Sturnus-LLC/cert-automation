@@ -43,8 +43,6 @@ for domain in "${DOMAIN_ARRAY[@]}"; do
         --agree-tos \
         --email admin@$domain \
         -d "$domain" \
-	--http-01-port $HTTP_PORT \
-        --https-port $HTTPS_PORT \
         $STAGING_FLAG
     
     # Copy certificates to the desired location

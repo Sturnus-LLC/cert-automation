@@ -2,6 +2,9 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/Sturnus-LLC/cert-automation/docker-image.yml)
 ![Docker Pulls](https://img.shields.io/docker/pulls/asturnus/cert-automation)
 
+[GitHub](https://github.com/Sturnus-LLC/cert-automation)
+[Docker Hub](https://hub.docker.com/r/asturnus/cert-automation)
+
 
 ## Overview
 This Docker container automates the process of generating and renewing SSL certificates using Let's Encrypt's Certbot for multiple domains.
@@ -22,20 +25,27 @@ This Docker container automates the process of generating and renewing SSL certi
 
 -Domains pointing to the server where this container will run
 
-## Usage
+## Build Image
 -Build the Docker Image
 ```bash
 docker build -t cert-automation .
 ```
 
+## Pull Image
+-Pull the Docker Image from Docker Hub
+```bash
+docker pull asturnus/cert-automation
+```
+
 ## Run the Container
 ```bash
 docker run -d \
-  -e DOMAINS="example.com,www.example.com,another-domain.com" \
-  -v cert-automation:/ssl-certs \
-  -p 80:80 \
-  -p 443:443 \
-  cert-automation
+    -e DOMAINS="example.com, www.example.com, " \
+    -e USE_STAGING=false \
+    -v cert-automation:/ssl-certs \
+    -p 80:80 \
+    -p 443:443 \
+    cert-automation:latest
 ```
 
 ## Parameters
