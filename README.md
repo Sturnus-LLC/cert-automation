@@ -25,16 +25,16 @@ This Docker container automates the process of generating and renewing SSL certi
 
 -Domains pointing to the server where this container will run
 
-## Build Image
--Build the Docker Image
-```bash
-docker build -t cert-automation .
-```
-
 ## Pull Image
 -Pull the Docker Image from Docker Hub
 ```bash
 docker pull asturnus/cert-automation
+```
+
+## Build Image
+-Build the Docker Image
+```bash
+docker build -t cert-automation .
 ```
 
 ## Run the Container
